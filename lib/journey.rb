@@ -1,3 +1,5 @@
+require_relative 'journeylog'
+
 class Journey
 
   attr_accessor :start_station, :end_station
@@ -7,6 +9,7 @@ class Journey
   def initlialize
     @start_station
     @end_station
+
   end
 
   def complete?
