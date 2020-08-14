@@ -11,13 +11,6 @@ describe Oystercard do
       expect(subject.journey_list).to eq []
     end
 
-    it "Checks if one journey is made" do
-      subject.top_up(10)
-      subject.touch_in(station)
-      subject.touch_out(station)
-      expect(subject.journey_list.count).to eq 1
-    end
-
   end
 
   describe '#top_up' do

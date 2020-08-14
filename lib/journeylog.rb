@@ -1,19 +1,20 @@
 require_relative 'oystercard'
+require_relative 'journey'
 
 
 class JourneyLog
 
-  attr_accessor :start_journey, :finish_journey
+  attr_accessor :start_journey, :finish_journey, :journey, :list_journey
 
-   def initialize(journey_class: Journey)
-      @start_journey
-      @finish_journey
-      @journeys = []
+   def initialize
+     @start_journey
+     @finish_journey
+     @journeys = []
+     @last_journey = Journey.new
    end
 
    def list_journey
-     return  @journeys << { :entry_station => @start_journey, :exit_station => @finish_journey }
-      #list_journey = nil
+     @journeys << { entry_station: @start_journey, exit_station: @finish_journey }
    end
 
    def journeys
@@ -23,7 +24,11 @@ class JourneyLog
    private
 
    def current_journey
-     @current_journey ||= journey_class.new
-   end
 
-end
+      if @start_journey == nil
+      @start_journey = "Incomplete journey"
+      elsif @finish_journey == nil
+      @finish_journey = "Incomplete journey"
+      end
+    end
+   end

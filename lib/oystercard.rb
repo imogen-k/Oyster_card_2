@@ -14,8 +14,6 @@ class Oystercard
     @journey_log = journey_log
   end
 
-  attr_reader :balance, :entry_station, :journey_list
-
   MAX_BALANCE = 90
   MIN_FARE = 1
 
@@ -38,9 +36,9 @@ class Oystercard
   def touch_out(station)
     @journey.end_station = station
     @journey_log.finish_journey = station
+    @journey.end_journey
     @journey_log.list_journey
     deduct(@journey.calculate_fare)
-    @journey_list << { :entry_station => @entry_station, :exit_station => station }
     @entry_station = nil
   end
 
